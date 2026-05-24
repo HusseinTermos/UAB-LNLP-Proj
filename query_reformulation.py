@@ -15,16 +15,15 @@ from transformers import (
     AutoModelForCausalLM,
     BitsAndBytesConfig,
 )
-from query_reformulation_config import MODEL_NAME, CACHE_PATH, BATCH_SIZE, MAX_NEW_TOK, TEMPERATURE,  SPLITS, PROMPT_TEMPLATE
+from query_reform_prompt import PROMPT_TEMPLATE
 
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class Query_Reformulater:
-    def __init__(self, model_name=MODEL_NAME, model_load_mode="api",
-                 HF_token = None, batch_size = BATCH_SIZE, temperature=TEMPERATURE, 
-                 max_new_tokens = MAX_NEW_TOK, prompt_template=PROMPT_TEMPLATE,
+    def __init__(self, model_name, model_load_mode, batch_size,
+                 temperature, max_new_tokens, HF_token = None, prompt_template=PROMPT_TEMPLATE,
                  cache_from=None, cache_to=None):
         self.model_name = model_name
         self.model_load_mode = model_load_mode

@@ -1,17 +1,3 @@
-from pathlib import Path
-MODEL_NAME  = "meta-llama/Llama-3.2-1B-Instruct"
-CACHE_PATH  = Path('.') / "cache" / "reformation_cache.json"
-BATCH_SIZE  = 4
-MAX_NEW_TOK = 500
-TEMPERATURE = 0.1
-
-LOCAL_PUBHEALTH_DIR = Path("data") / "pubhealth_bigbio_pairs"
-SPLITS = {
-    "train":      "train.tsv",
-    "validation": "dev.tsv",
-    "test":       "test.tsv",
-}
-
 PROMPT_TEMPLATE = """You are a biomedical text simplifier.
 
 Rewrite the health claim below into one simplified, direct, search-ready sentence.

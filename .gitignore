@@ -1,5 +1,7 @@
 .env
-.venv
+.venv/
+.venv312/
+models/
 __pycache__
 data/
 cache/

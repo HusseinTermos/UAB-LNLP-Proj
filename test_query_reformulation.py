@@ -1,18 +1,19 @@
+from pathlib import Path
+
 from query_reformulation import Query_Reformulater
 import os
 
 import pandas as pd
 import logging
 import warnings
-from datasets import load_dataset, load_from_disk
 
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# CACHE_PATH  = "/kaggle/working/reformulation_cache.json"
-from query_reformulation_config import MODEL_NAME, CACHE_PATH, BATCH_SIZE, MAX_NEW_TOK, TEMPERATURE, LOCAL_PUBHEALTH_DIR, SPLITS, PROMPT_TEMPLATE
 
+CACHE_PATH  = Path('.') / "cache" / "reformation_cache.json"
+LOCAL_PUBHEALTH_DIR = Path("data") / "pubhealth_bigbio_pairs"
 def load_pubhealth():
     dataframes = {
         "train": pd.read_parquet(LOCAL_PUBHEALTH_DIR / "train" / "0000.parquet"),
