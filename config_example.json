@@ -1,0 +1,59 @@
+{
+  "data": {
+    "local_dir": "data/pubhealth_bigbio_pairs",
+    "claim_column": "claim",
+    "label_column": "label",
+    "processed_dataset_path":"data/processed/pubhealth_rag_dataset.jsonl",
+    "max_examples_per_split": 3
+  },
+
+  "reformulation": {
+    "enabled": false,
+    "model_name": "meta-llama/Llama-3.2-1B-Instruct",
+    "model_load_mode": "api",
+    "batch_size": 4,
+    "temperature": 0.6,
+    "max_new_tokens": 1000,
+    "cache_path": "data/cache/reformulation_cache.json"
+  },
+
+  "rag": {
+    "query_source": "reformulated",
+    "top_k": 5,
+    "method": "biencoder",
+    "chunk_size": 250,
+    "chunk_overlap": 60,
+    "embedding_model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "cross_encoder_model_name": "cross-encoder/ms-marco-TinyBERT-L2-v2",
+    "reset_collection": true
+
+  },
+
+  "longformer": {
+    "model_name": "allenai/longformer-base-4096",
+    "max_length": 4096,
+    "label_map": {
+      "false": 0,
+      "mixture": 1,
+      "true": 2,
+      "unproven": 3
+    }
+  },
+
+  "training": {
+    "processed_dataset_path": "data/processed/pubhealth_rag_dataset.jsonl",
+    "output_dir": "models/longformer_pubhealth",
+    "epochs": 2,
+    "batch_size": 1,
+    "learning_rate": 2e-5,
+    "weight_decay": 0.01,
+    "logging_steps": 20,
+    "save_steps": 200
+  },
+
+  "inference": {
+    "model_dir": null,
+    "batch_size": 8,
+    "max_examples": 3
+  }
+}
