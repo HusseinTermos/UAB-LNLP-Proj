@@ -1,6 +1,7 @@
 .env
 .venv/
 .venv312/
+.vscode/
 models/
 __pycache__
 data/
